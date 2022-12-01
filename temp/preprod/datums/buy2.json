@@ -1,0 +1,105 @@
+{
+  "constructor": 0,
+  "fields": [
+    {
+      "bytes": "91c6aee6e8bf57be30d6012b6d642fb4bfb212dc1df09c4cc99403d4"
+    },
+    {
+      "list": [
+        {
+          "constructor": 0,
+          "fields": [
+            {
+              "bytes": "91c6aee6e8bf57be30d6012b6d642fb4bfb212dc1df09c4cc99403d4"
+            },
+            {
+              "map": [
+                {
+                  "k": {
+                      "bytes": ""
+                    },
+                  "v": {
+                    "map":[
+                      { "k":
+                        {
+                          "bytes": ""
+                        },
+                        "v":
+                        {
+                          "int": 8000000
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "constructor": 0,
+          "fields": [
+            {
+              "bytes": "3a94bdce6f53017a81f2ea523d31e547a25ccbe6d09d75e8f435dc8b"
+            },
+            {
+              "map": [
+                {
+                  "k":
+                    {
+                      "bytes": ""
+                    },
+                  "v": {
+                    "map": [
+                      { "k":
+                        {
+                          "bytes": ""
+                        }
+                      ,
+                        "v":
+                        {
+                          "int": 1000000
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "constructor": 0,
+          "fields": [
+            {
+              "bytes": "47f4a9054d3f600fc05b4b9370ceb2a9bdcf55283735f9c933e563fb"
+            },
+            {
+              "map": [
+                {
+                  "k": {
+                      "bytes": ""
+                    },
+                  "v": {
+                    "map": [
+                      {
+                        "k": {
+                      "bytes": ""
+                    },
+                        "v":
+                        {
+                          "int": 1000000
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

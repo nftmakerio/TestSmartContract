@@ -1,0 +1,7 @@
+export CARDANO_NODE_SOCKET_PATH="/home/sascha/.local/share/Daedalus/preprod/cardano-node.socket"
+export TESTNET_MAGIC=1
+export WALLET_DIR=$PWD/temp/preprod
+export BLOCKCHAIN_PREFIX=preprod
+export BLOCKCHAIN="--testnet-magic 1"
+export POLICYID="a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d"
+export ASSETNAME="574654"

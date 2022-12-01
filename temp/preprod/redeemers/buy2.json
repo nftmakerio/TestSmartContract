@@ -1,0 +1,39 @@
+{
+  "constructor": 1,
+  "fields": [
+    {
+      "list": [
+        {
+          "constructor": 0,
+          "fields": [
+            {
+              "bytes": "d414f4a29533507c00cdb62b6568bd3dbe5044571e68e6f71804a42f"
+            },
+            {
+              "map": [
+                {
+                  "k": {
+                    "bytes": "a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d"
+                  },
+                  "v": {
+                    "map": [
+                      {
+                        "k": {
+                          "bytes": "574654"
+                        },
+                        "v": {
+                          "int": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
