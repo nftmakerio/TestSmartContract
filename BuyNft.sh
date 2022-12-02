@@ -24,7 +24,7 @@ cardano-cli query protocol-parameters \
 
 
 # look for the txins
-changeOutput=$(cardano-cli-balance-fixer change --address $buyerwalletaddress $BLOCKCHAIN -o "$value")
+changeOutput=$(cardano-cli-balance-fixer change --address $buyerwalletaddress $BLOCKCHAIN)
 #echo "ChangeOutput: " $changeOutput
 
 # if there are more tokens, we put it into extraoutput
@@ -56,6 +56,9 @@ royalitiesAddr=$(cat $walletDir/royalties.addr)
 sellerAmount="8000000 lovelace"
 marketPlaceAmount="1000000 lovelace"
 royaltiesAmount="1000000 lovelace"
+collateral=$(cardano-cli-balance-fixer collateral --address $buyerwalletaddress $BLOCKCHAIN )
+
+#collateral="1ca4cb3450f92e029b4e3ddfad3366f7e6864f358afb4b8cfc0e23cb294d17c4#5"
 
 echo "Smartcontract address " $smartcontractaddress
 echo "ScriptDatumHash: " $scriptDatumHash
@@ -69,11 +72,13 @@ echo "Seller gets: " $sellerAmount
 echo "Marketplace gets: " $marketPlaceAmount
 echo "Royaltyrecevier gets: " $royaltiesAmount
 echo "Buyer get: " $value
+echo "Collateral Buyer: " $collateral
+echo ""
+
+
 
 # Create the Transaction
-
-
-
+set -eux
 
 cardano-cli transaction build \
     --babbage-era \
@@ -84,7 +89,7 @@ cardano-cli transaction build \
     --tx-in-datum-file $datumFile \
     --tx-in-redeemer-file $redeemerFile \
     --required-signer-hash $signingKeyHash \
-    --tx-in-collateral $(cardano-cli-balance-fixer collateral --address $buyerwalletaddress $BLOCKCHAIN ) \
+    --tx-in-collateral $collateral \
     --tx-out "$sellerwalletaddress + $sellerAmount" \
     --tx-out "$buyerwalletaddress + $value" \
     --tx-out "$marketplaceAddr + $marketPlaceAmount" \
