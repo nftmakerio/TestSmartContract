@@ -1,5 +1,15 @@
 # TestSmartContract
 
+### Required Components
+1. Cardano-cli-balance-fixer:
+https://github.com/Canonical-LLC/cardano-cli-balance-fixer
+
+2. Deadalus Wallet (or Cardano Node)
+https://daedaluswallet.io/
+
+
+
+## How to start
 ### 1. Source the Envvars (before set the policyid and assetname)
 In the Envvars you define the policyid and the nftname (in HEX)
 ```console
