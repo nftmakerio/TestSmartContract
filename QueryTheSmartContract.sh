@@ -7,6 +7,7 @@ walletDir=$thisDir/wallets/$BLOCKCHAIN_PREFIX
 smartcontractaddress=$(cat $tempDir/$BLOCKCHAIN_PREFIX/smartcontract.addr)
 echo "Smartcontract address " $smartcontractaddress
 
-cardano-cli query utxo \
-$BLOCKCHAIN \
---address $smartcontractaddress
+./QueryUtxo.sh $smartcontractaddress
+
+
+

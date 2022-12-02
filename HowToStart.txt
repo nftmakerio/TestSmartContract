@@ -18,5 +18,9 @@ Hash the Datums:
 Lock the NFT into the Smartcontract
 ./LockNftInSmartcontract.sh
 
+Query the Smartcontract if the txhash is there
 ./QueryTheSmartContract.sh
+
+Fill the Buyer Wallet with ADA
+./BuyNft.sh
 
