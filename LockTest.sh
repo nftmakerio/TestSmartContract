@@ -1,4 +1,4 @@
-set -eux
+set -eu
 thisDir=$(dirname "$0")
 tempDir=$thisDir/temp
 walletDir=$thisDir/wallets/$BLOCKCHAIN_PREFIX
@@ -68,7 +68,7 @@ cardano-cli transaction build \
     $txins \
     --tx-out "$smartcontractaddress + $value" \
     --tx-out-datum-hash $scriptDatumHash \
-    --tx-out "$sellerwalletaddress + 4000000 lovelace $extraOutput" \
+    --tx-out "$sellerwalletaddress + 2000000 lovelace $extraOutput" \
     --change-address $sellerwalletaddress \
     --protocol-params-file temp/$BLOCKCHAIN_PREFIX/protocol-parameters.json \
     --out-file $bodyFile

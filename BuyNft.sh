@@ -4,7 +4,7 @@ tempDir=$thisDir/temp
 walletDir=$thisDir/wallets/$BLOCKCHAIN_PREFIX
 
 # get walletaddress from seller
-buyerwalletaddress=$(cat $walletDir/buyer-nami.addr) 
+buyerwalletaddress=$(cat $walletDir/buyer.addr) 
 echo "Buyerwalletaddress UTXO" $buyerwalletaddress
 
 ./QueryUtxo.sh $buyerwalletaddress
@@ -42,7 +42,7 @@ echo "Inputs: " $txins
 bodyFile=$tempDir/lockb.raw
 outFile=$tempDir/lockb-signed.raw
 signingKey=$walletDir/buyer.skey
-signingKeyHash=$(cat $walletDir/pkhs/buyer-nami-pkh.txt)
+signingKeyHash=$(cat $walletDir/pkhs/buyer-pkh.txt)
 smartcontractaddress=$(cat $tempDir/$BLOCKCHAIN_PREFIX/smartcontract.addr)
 scriptDatumHash=$(cat $tempDir/$BLOCKCHAIN_PREFIX/datums/buy-hash.txt)
 utxoScript=$(./QueryUtxo.sh $smartcontractaddress | grep $scriptDatumHash | head -n 1 | cardano-cli-balance-fixer parse-as-utxo)
@@ -55,7 +55,7 @@ royalitiesAddr=$(cat $walletDir/royalties.addr)
 sellerAmount="8000000 lovelace"
 marketPlaceAmount="1000000 lovelace"
 royaltiesAmount="1000000 lovelace"
-#collateral=$(cardano-cli-balance-fixer collateral --address $buyerwalletaddress $BLOCKCHAIN )
+collateral=$(cardano-cli-balance-fixer collateral --address $buyerwalletaddress $BLOCKCHAIN )
 
 #collateral="1ca4cb3450f92e029b4e3ddfad3366f7e6864f358afb4b8cfc0e23cb294d17c4#5"
 
@@ -71,7 +71,7 @@ echo "Seller gets: " $sellerAmount
 echo "Marketplace gets: " $marketPlaceAmount
 echo "Royaltyrecevier gets: " $royaltiesAmount
 echo "Buyer get: " $value
-#echo "Collateral Buyer: " $collateral
+echo "Collateral Buyer: " $collateral
 echo ""
 
 
@@ -82,20 +82,17 @@ set -eux
 cardano-cli transaction build \
     --babbage-era \
     $BLOCKCHAIN \
-    --tx-in "09da10e0ede1c290c9bc151792fcdfb910b0a8e596ebdcd370b5caf5b5573747#1" \
-    --tx-in "b3857a2568749c8cf50abe47dec07e539c042c05aad3c9f2dce2370ab7a9f836#2" \
+    $txins \
     --tx-in $utxoScript \
     --script-valid \
     --tx-in-script-file $plutusFile \
     --tx-in-datum-file $datumFile \
     --tx-in-redeemer-file $redeemerFile \
     --required-signer-hash $signingKeyHash \
-    --tx-in-collateral "09da10e0ede1c290c9bc151792fcdfb910b0a8e596ebdcd370b5caf5b5573747#1" \
-    --tx-in-collateral "b3857a2568749c8cf50abe47dec07e539c042c05aad3c9f2dce2370ab7a9f836#2" \
-    --tx-out-return-collateral "$buyerwalletaddress + 478767859 lovelace + 104 a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d.574654" \
-    --tx-total-collateral 1500000 \
+    --tx-in-collateral $collateral \
     --tx-out "$sellerwalletaddress + $sellerAmount" \
-    --tx-out "$buyerwalletaddress + $value + 103 a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d.574654" \
+    --tx-out "$buyerwalletaddress + $value" \
+    --tx-out "$buyerwalletaddress + 3000000 $extraOutput" \
     --tx-out "$marketplaceAddr + $marketPlaceAmount" \
     --tx-out "$royalitiesAddr + $royaltiesAmount" \
     --change-address $buyerwalletaddress \
@@ -105,7 +102,8 @@ cardano-cli transaction build \
 
 # --tx-out "$buyerwalletaddress + 3000000 lovelace + 102 a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d.574654" \
 
-
+  # --tx-out-return-collateral "$buyerwalletaddress + 478767859 lovelace + 104 a2d817f64ae600846073774fa5bfdf551b7e759e5aee715e42b1752d.574654" \
+   # --tx-total-collateral 1500000 \
 : '
 # Old version
 cardano-cli transaction build \
@@ -136,7 +134,7 @@ cardano-cli transaction sign \
     $BLOCKCHAIN \
     --out-file $outFile
 
-exit 0
+
 
 # Submit
   echo "Submit the transaction"

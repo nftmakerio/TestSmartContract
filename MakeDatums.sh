@@ -9,7 +9,7 @@ mkdir -p $tempDir/$BLOCKCHAIN_PREFIX/redeemers
 sellerPkh=$(cat $walletDir/pkhs/seller-pkh.txt)
 marketplacePkh=$(cat $walletDir/pkhs/marketplace-pkh.txt)
 royaltyPkh=$(cat $walletDir/pkhs/royalties-pkh.txt)
-buyerPkh=$(cat $walletDir/pkhs/buyer-nami-pkh.txt)
+buyerPkh=$(cat $walletDir/pkhs/buyer-pkh.txt)
 
 cat << EOF > $tempDir/$BLOCKCHAIN_PREFIX/datums/buy.json
 {
